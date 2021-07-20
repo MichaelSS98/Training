@@ -4,8 +4,17 @@
   "description": "",
   "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon start.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.0.1",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "mongodb": "^4.0.0",
+    "mongoose": "^5.13.3",
+    "nodemon": "^2.0.12"
+  }
 }

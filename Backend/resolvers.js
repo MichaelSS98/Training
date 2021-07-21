@@ -1,4 +1,10 @@
 const {Employee} = require('./models/Employee.js');
+const { GraphQLDate } = require('graphql-iso-date')
+
+//bucata de resolvers realizeaza actiunile efective venite de la client
+//partea de Query din cate inteleg este pentru geturi(selecturi din baza de date)
+//partea de mutations se ocupa de restul operatiilor(adaugare, stergere, update)
+//de asemenea aici definim tipurile declarate cu scalar la typeDefs
 
 const resolvers = {
     Query: {
@@ -6,7 +12,7 @@ const resolvers = {
             return Employee.find({});
         },
         getEmployee: (parent, args) => {
-            return Employee.find(args.name);
+            return Employee.findOne({name: args.name});
         }
     },
     Mutation: {
@@ -15,7 +21,7 @@ const resolvers = {
                 name: args.name,
                 adress: args.adress,
                 email: args.email,
-                //hire_date: args.hire_date,
+                hire_date: args.hire_date,
                 salary: args.salary,
                 job_title: args.job_title
             });
@@ -32,6 +38,7 @@ const resolvers = {
                         adress: args.adress,
                         email: args.email,
                         salary: args.salary,
+                        hire_date: args.hire_date,
                         job_title: args.job_title
                     }
                 }, 
@@ -47,7 +54,8 @@ const resolvers = {
         deleteEmployee: (parent, args) => {
             return Employee.findByIdAndDelete(args.id);
         }
-    }
+    },
+    ISODate: GraphQLDate
 };
 
 module.exports = {resolvers}

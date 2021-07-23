@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//definirea schemei de date pentru colectia din mongo
+//definirea schemei de date pentru colectia employees din mongo
 const employeeSchema = new Schema({
     name: {
         type: String,
         required: true,
         unique: true
+    },
+    project_id: {
+        type: Schema.Types.ObjectId, 
+        ref: "Project"
     },
     adress: {
         type: String,

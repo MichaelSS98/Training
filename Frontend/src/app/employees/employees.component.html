@@ -1,16 +1,16 @@
 <h1>The employees section!</h1>
-<h3>Currently there are {{employees.length}} employees here!</h3> 
+<h3>There are {{employees.length}} employees here currently!</h3>
 
 <!-- The button to add a new employee -->
 <div *ngIf="loading">Loading...</div>
-<button mat-button (click)="openAddDialog()">
+<button mat-button (click)="openAddDialog()" class="addButton">
     <mat-icon>add</mat-icon>
     Add Employee
 </button>
 
 <!-- The table created using Angular Material -->
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch" class="employees">
-    <table mat-table fxFlex="100%" fxFlex.get-sm="66%" [dataSource]="employees" class="employees-elevation">
+    <table mat-table fxFlex="95%" fxFlex.get-sm="66%" [dataSource]="employees" class="employees-elevation">
         <!-- The name column -->
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>

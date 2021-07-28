@@ -1,0 +1,48 @@
+mat-icon {
+    color: blueviolet;
+}
+
+.header {
+    display: flex;
+}
+
+.header-text {
+    padding-left: 20rem;
+}
+
+.employees {
+    margin-left: 2rem;
+}
+
+th {
+    font-weight: bold;
+    color: blueviolet;
+}
+
+h1, h3 {
+    margin-top: 2rem;
+    color: black;
+    font-weight: bold; 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 40px;
+    color: black;
+}
+
+h3 {
+    font-size: 30px;
+    color: rgb(63, 81, 181);
+}
+
+.addButton {
+    margin-left: 2rem;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    box-shadow: 0px 1px 3px 0px blueviolet;
+    border-radius: 30px;
+    height: 3rem;
+}

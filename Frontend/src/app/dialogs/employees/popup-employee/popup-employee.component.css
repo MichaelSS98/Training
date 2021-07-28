@@ -1,0 +1,53 @@
+.popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner_form div {
+    display: inline-block;
+    justify-content: space-between;
+    padding-bottom: 2.5rem;
+}
+
+mat-form-field {
+    padding-left: 1.5rem;
+}
+
+h1 {
+    padding-bottom: 2.5rem;
+    color: blueviolet;
+    font-weight: bold;
+}
+
+.inner_buttons {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    margin-left: 30rem;
+}
+
+button {
+    margin-right: 1rem;
+    color: white;
+    background-color: blueviolet;
+    border: solid;
+    border-radius: 30px;
+}
+
+.small_button {
+    width: 7rem;
+}
+
+.delete_buttons_div {
+    margin-left: 15rem;
+}
+
+button:hover {
+    background-color: rgba(137, 43, 226, 0.651);
+}
+
+.final_input {
+    padding-left: 15.7rem;
+}

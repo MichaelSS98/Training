@@ -1,11 +1,11 @@
 <!-- popup for updating or adding a new employee -->
-<div *ngIf="data.message === undefined">
+<div *ngIf="data.message === undefined" class="popup">
     <!-- depending on the operation we render one of two headers -->
     <h1 mat-dialog-title *ngIf="data.name === ''">Plese complete the data for a new employee!</h1>
     <h1 mat-dialog-title *ngIf="data.name.length > 0">Plese complete the data in order to update the employee!</h1>
 
     <!-- form created using Angular Material -->
-    <div mat-dialog-content>
+    <div mat-dialog-content class="inner_form">
         <!-- The name field -->
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
@@ -37,22 +37,24 @@
             <input matInput [(ngModel)]="data.salary">
         </mat-form-field>
         <!-- The job title field -->
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="final_input">
             <mat-label>Job Title</mat-label>
             <input matInput [(ngModel)]="data.job_title">
         </mat-form-field>
     </div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="inner_buttons">
         <button mat-button (click)="onClickCancel()">CANCEL</button>
         <button mat-button [mat-dialog-close]="data">SUBMIT</button>
     </div>
 </div>
 
 <!-- If there is a message inside then this is a delete request -->
-<div *ngIf="data.message !== undefined">
-    <div mat-dialog-content>{{data.message}}</div>
-    <div mat-dialog-actions>
-        <button mat-button (click)="onClickCancel()">CANCEL</button>
-        <button mat-button [mat-dialog-close]="true">OK</button>
+<div *ngIf="data.message !== undefined" class="popup">
+    <div mat-dialog-content>
+        <h1>{{data.message}}</h1>
+    </div>
+    <div mat-dialog-actions class="delete_buttons_div">
+        <button mat-button (click)="onClickCancel()" class="small_button">CANCEL</button>
+        <button mat-button [mat-dialog-close]="true" class="small_button">OK</button>
     </div>
 </div>

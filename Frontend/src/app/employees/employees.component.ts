@@ -49,7 +49,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   //Popup for adding a new employee
   openAddDialog(): void {
     const dialogRef = this.dialog.open(PopupEmployeeComponent, {
-      width: '350px',
+      width: '750px',
       data: this.empty_employee
     });
     dialogRef.afterClosed().subscribe(res => {
@@ -93,7 +93,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   openUpdateDialog(employee: any): void {
     const employeeReplica = JSON.parse(JSON.stringify(employee));
     const dialogRef = this.dialog.open(PopupEmployeeComponent, {
-      width: '350px',
+      width: '750px',
       data: employeeReplica
     });
     dialogRef.afterClosed().subscribe(res => {
@@ -137,7 +137,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   //Popup for deleting an employee
   openDeleteDialog(employee: any): void {
     const dialogRef = this.dialog.open(PopupEmployeeComponent, {
-      width: '350px',
+      width: '600px',
       data: {message: 'Are you sure you want to delete this employee?'}
     });
     dialogRef.afterClosed().subscribe(res => {

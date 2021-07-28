@@ -1,0 +1,18 @@
+<!-- defining the toolbar using Angular Material -->
+<mat-toolbar color="primary" class="expanded-toolbar">
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+    <button mat-button routerLink="/projects">Projects</button>
+    <button mat-button routerLink="/employees">Employees</button>
+  </div>
+  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/"><mat-icon>home</mat-icon> Home</button>
+  <button mat-menu-item routerLink="/projects">Projects</button>;
+  <button mat-menu-item routerLink="/employees">Employees</button>
+</mat-menu>
+<router-outlet></router-outlet>

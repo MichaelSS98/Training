@@ -1,0 +1,59 @@
+<h1>The projects section!</h1>
+
+<!-- The button to add a new employee -->
+<div *ngIf="loading">Loading...</div>
+<button mat-button (click)="openAddDialog()">
+    <mat-icon>add</mat-icon>
+    Add Project
+</button>
+
+<!-- The table created using Angular Material -->
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch" class="projects">
+    <table mat-table fxFlex="100%" fxFlex.get-sm="66%" [dataSource]="projects" class="projects-elevation">
+        <!-- The project name column -->
+        <ng-container matColumnDef="project_name">
+            <th mat-header-cell *matHeaderCellDef>Project Name</th>
+            <td mat-cell *matCellDef="let project">{{project.project_name}}</td>
+        </ng-container>
+        <!-- The id column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let project">{{project.id}}</td>
+        </ng-container>
+        <!-- The planne end date column -->
+        <ng-container matColumnDef="planned_end_date">
+            <th mat-header-cell *matHeaderCellDef>Planned End Date</th>
+            <td mat-cell *matCellDef="let project">{{project.planned_end_date}}</td>
+        </ng-container>
+        <!-- The start date column -->
+        <ng-container matColumnDef="start_date">
+            <th mat-header-cell *matHeaderCellDef>Start Date</th>
+            <td mat-cell *matCellDef="let project">{{project.start_date}}</td>
+        </ng-container>
+        <!-- The project code column -->
+        <ng-container matColumnDef="project_code">
+            <th mat-header-cell *matHeaderCellDef>Project Code</th>
+            <td mat-cell *matCellDef="let project">{{project.project_code}}</td>
+        </ng-container>
+        <!-- The edit button -->
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let project">
+                <button mat-icon-button (click)="openUpdateDialog(project)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <!-- The delete button -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let project">
+                <button mat-icon-button (click)="openDeleteDialog(project)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

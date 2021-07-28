@@ -1,0 +1,75 @@
+<h1>The employees section!</h1>
+<h3>Currently there are {{employees.length}} employees here!</h3> 
+
+<!-- The button to add a new employee -->
+<div *ngIf="loading">Loading...</div>
+<button mat-button (click)="openAddDialog()">
+    <mat-icon>add</mat-icon>
+    Add Employee
+</button>
+
+<!-- The table created using Angular Material -->
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch" class="employees">
+    <table mat-table fxFlex="100%" fxFlex.get-sm="66%" [dataSource]="employees" class="employees-elevation">
+        <!-- The name column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let employee">{{employee.name}}</td>
+        </ng-container>
+        <!-- The id column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let employee">{{employee.id}}</td>
+        </ng-container>
+        <!-- The adress column -->
+        <ng-container matColumnDef="adress">
+            <th mat-header-cell *matHeaderCellDef>Adress</th>
+            <td mat-cell *matCellDef="let employee">{{employee.adress}}</td>
+        </ng-container>
+        <!-- The email column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let employee">{{employee.email}}</td>
+        </ng-container>
+        <!-- The salary column -->
+        <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef>Salary</th>
+            <td mat-cell *matCellDef="let employee">{{employee.salary}}</td>
+        </ng-container>
+        <!-- The hire date column -->
+        <ng-container matColumnDef="hire_date">
+            <th mat-header-cell *matHeaderCellDef>Hire Date</th>
+            <td mat-cell *matCellDef="let employee">{{employee.hire_date}}</td>
+        </ng-container>
+        <!-- The job title column -->
+        <ng-container matColumnDef="job_title">
+            <th mat-header-cell *matHeaderCellDef>Job Title</th>
+            <td mat-cell *matCellDef="let employee">{{employee.job_title}}</td>
+        </ng-container>
+        <!-- The project id column -->
+        <ng-container matColumnDef="project_id">
+            <th mat-header-cell *matHeaderCellDef>Project_ID</th>
+            <td mat-cell *matCellDef="let employee">{{employee.project_id}}</td>
+        </ng-container>
+        <!-- The edit button -->
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let employee">
+                <button mat-icon-button (click)="openUpdateDialog(employee)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <!-- The delete button -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let employee">
+                <button mat-icon-button (click)="openDeleteDialog(employee)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

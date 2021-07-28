@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const {ApolloServer} = require('apollo-server-express');
 const {resolvers} = require('./resolvers.js');
 const {typeDefs} = require('./typeDefs.js');
+const cors = require('cors');
 
 const startServer = async () => {
     const app = express(); //creare server
     app.use(express.json()); //parsare de URL. Stiu ca nu trebuia, dar am zis ca poate e nevoie mai incolo
+    app.use(cors());
 
     //conectare la mongo
     const url = "mongodb://mihai:root@localhost:27017/employees"

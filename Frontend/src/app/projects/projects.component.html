@@ -1,15 +1,15 @@
-<h1>The projects section!</h1>
+<h1>THE PROJECTS SECTION!</h1>
 
 <!-- The button to add a new employee -->
 <div *ngIf="loading">Loading...</div>
-<button mat-button (click)="openAddDialog()">
+<button mat-button (click)="openAddDialog()" class="addButton">
     <mat-icon>add</mat-icon>
-    Add Project
+    ADD PROJECT
 </button>
 
 <!-- The table created using Angular Material -->
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch" class="projects">
-    <table mat-table fxFlex="100%" fxFlex.get-sm="66%" [dataSource]="projects" class="projects-elevation">
+    <table mat-table fxFlex="95%" fxFlex.get-sm="66%" [dataSource]="projects" class="projects-elevation">
         <!-- The project name column -->
         <ng-container matColumnDef="project_name">
             <th mat-header-cell *matHeaderCellDef>Project Name</th>

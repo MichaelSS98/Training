@@ -1,11 +1,11 @@
 <!-- popup for updating or adding a new project -->
-<div *ngIf="data.message === undefined">
+<div *ngIf="data.message === undefined" class="popup">
     <!-- depending on the operation we render one of two headers -->
     <h1 mat-dialog-title *ngIf="data.project_name === ''">Plese complete the data for a new project!</h1>
     <h1 mat-dialog-title *ngIf="data.project_name.length > 0">Plese complete the data in order to update the project!</h1>
 
     <!-- form created using Angular Material -->
-    <div mat-dialog-content>
+    <div mat-dialog-content class="inner_form">
         <!-- The project name field -->
         <mat-form-field appearance="fill">
             <mat-label>Project Name</mat-label>
@@ -22,7 +22,7 @@
             <input matInput [(ngModel)]="data.planned_end_date">
         </mat-form-field>
         <!-- The description field -->
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="final_input">
             <mat-label>Description</mat-label>
             <input matInput [(ngModel)]="data.description">
         </mat-form-field>
@@ -32,17 +32,19 @@
             <input matInput [(ngModel)]="data.project_code">
         </mat-form-field>
     </div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="inner_buttons">
         <button mat-button (click)="onClickCancel()">CANCEL</button>
         <button mat-button [mat-dialog-close]="data">SUBMIT</button>
     </div>
 </div>
 
 <!-- If there is a message inside then this is a delete request -->
-<div *ngIf="data.message !== undefined">
-    <div mat-dialog-content>{{data.message}}</div>
-    <div mat-dialog-actions>
-        <button mat-button (click)="onClickCancel()">CANCEL</button>
-        <button mat-button [mat-dialog-close]="true">OK</button>
+<div *ngIf="data.message !== undefined" class="popup">
+    <div mat-dialog-content>
+        <h1>{{data.message}}</h1>
+    </div>
+    <div mat-dialog-actions class="delete_buttons_div">
+        <button mat-button (click)="onClickCancel()" class="small_button">CANCEL</button>
+        <button mat-button [mat-dialog-close]="true" class="small_button">OK</button>
     </div>
 </div>

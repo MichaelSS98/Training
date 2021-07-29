@@ -46,7 +46,7 @@ export class ProjectsComponent implements OnInit {
   //Popup for adding a new project
   openAddDialog(): void {
     const dialogRef = this.dialog.open(PopupProjectComponent, {
-      width: '350px',
+      width: '750px',
       data: this.empty_project
     });
     dialogRef.afterClosed().subscribe(res => {
@@ -85,7 +85,7 @@ export class ProjectsComponent implements OnInit {
   openUpdateDialog(project: any): void {
     const projectReplica = JSON.parse(JSON.stringify(project));
     const dialogRef = this.dialog.open(PopupProjectComponent, {
-      width: '350px',
+      width: '750px',
       data: projectReplica
     });
     dialogRef.afterClosed().subscribe(res => {
@@ -127,7 +127,7 @@ export class ProjectsComponent implements OnInit {
   //Popup for deleting a project
   openDeleteDialog(project: any): void {
     const dialogRef = this.dialog.open(PopupProjectComponent, {
-      width: '350px',
+      width: '600px',
       data: {message: 'Are you sure you want to delete this project?'}
     });
     dialogRef.afterClosed().subscribe(res => {

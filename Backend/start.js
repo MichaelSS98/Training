@@ -21,7 +21,7 @@ const startServer = async () => {
     //creare server de apollo
     const server = new ApolloServer({
         schema: applyMiddleware(buildFederatedSchema([{typeDefs, resolvers}]), permissions),
-        context: ({req}) => {
+        context: ({req}) => { //definire context cu userul din token decodificat primit din request
             const user = req.headers.user ? JSON.parse(req.headers.user) : null;
             return {user};
         }

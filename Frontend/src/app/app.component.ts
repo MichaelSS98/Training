@@ -13,16 +13,20 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    //refresh the value of token
     this.token = localStorage.getItem("token");
   };
 
   logOut(): void {
+
+    //on log out delete the token from localStorage
     localStorage.setItem("token", "");
+
+    //reroute to Log In
     this.router.navigate(['/login']);
+
+    //refresh the token value and therefore the taskbar
     this.ngOnInit();
   };
 
-  myRefresh(): void {
-    this.ngOnInit();
-  };
 }

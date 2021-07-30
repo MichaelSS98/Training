@@ -16,6 +16,7 @@ const LOGIN = gql`
 })
 export class LoginComponent implements OnInit {
 
+  //the entry in which we keep the form information
   newUser: any = {
     username: "",
     password: ""
@@ -27,6 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(): void {
+    
+    //check if all the credentials are completed
     if (this.newUser.username === "" || this.newUser.password === "")
       console.log("Missing credentials for login!");
     else
@@ -37,6 +40,7 @@ export class LoginComponent implements OnInit {
           password: this.newUser.password
         }
       }).subscribe(({data} :any) => {
+        //if everything worked correctly store the token in localStorage
         if (data.login !== "Wrong Credentials!")
         {
           localStorage.setItem("token", data.login);

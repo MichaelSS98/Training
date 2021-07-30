@@ -12,15 +12,19 @@ const startServer = async () => {
     const app = express(); //creare server
     app.use(express.json()); //parsare de URL. Stiu ca nu trebuia, dar am zis ca poate e nevoie mai incolo
     app.use(cors());
+
+    //decodare JWT token
     app.use(expressJwt({
         secret: "we_rock",
         algorithms: ["HS256"],
         credentialsRequired: false
     }));
 
+    //creare Apollo Gateway
     const gateway = new ApolloGateway({
         serviceList: [{name: "EandP", url: url}],
         buildService({ name, url }) {
+            //trimitere request cu header de Authorization
             return new RemoteGraphQLDataSource({
                 url,
                 willSendRequest({request, context}) {
@@ -36,7 +40,7 @@ const startServer = async () => {
     const server = new ApolloServer({
         gateway,
         subscription: false,
-        context: ({req}) => {
+        context: ({req}) => { //creare context
             const user = req.user || null;
             return {user};
         }

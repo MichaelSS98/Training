@@ -12,12 +12,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //check if the user is authenticated. If not redirect to log in
     const token = localStorage.getItem("token");
     if (token === null || token === "") {
       console.log("Log In first please");
       this.router.navigate(['/login']);
     }
 
+    //if you just logged in, refresh the app so that the taskbar updates
     if (!localStorage.getItem("reload")) {
       localStorage.setItem("reload", 'no-reload');
       window.location.reload();

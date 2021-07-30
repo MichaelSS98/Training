@@ -1,18 +1,24 @@
 <h1>REGISTER</h1>
+
+<!--The Register form-->
 <div class="container">
     <div class="formular">
+        <!--The username input-->
         <label>
             Username
             <input type="text" [(ngModel)]="newUser.username">
         </label>
+        <!--The email input-->
         <label>
             Email
             <input type="text" [(ngModel)]="newUser.email">
         </label>
+        <!--The password input-->
         <label>
             Password
             <input type="password" [(ngModel)]="newUser.password">
         </label>
+        <!--The confirm password input-->
         <label>
             Confirm Password
             <input type="password" [(ngModel)]="newUser.confirm_password">

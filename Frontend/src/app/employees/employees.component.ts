@@ -39,6 +39,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   //On initialisation we get all the entries from the back-end
   ngOnInit(): void {
 
+    //check if the user is authenticated. If not redirect to log in
     const token = localStorage.getItem("token");
     if (token === null || token === "") {
       console.log("Log In first please");

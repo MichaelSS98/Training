@@ -1,14 +1,14 @@
-const express = require('express');
 const mongoose = require('mongoose');
-const {ApolloServer} = require('apollo-server-express');
+const {ApolloServer} = require('apollo-server');
+const {applyMiddleware} = require('graphql-middleware');
 const {resolvers} = require('./resolvers.js');
 const {typeDefs} = require('./typeDefs.js');
-const cors = require('cors');
+const { buildFederatedSchema } = require("@apollo/federation");
+const {permissions} = require("./permissions.js");
 
 const startServer = async () => {
-    const app = express(); //creare server
-    app.use(express.json()); //parsare de URL. Stiu ca nu trebuia, dar am zis ca poate e nevoie mai incolo
-    app.use(cors());
+
+    const port = 5001;
 
     //conectare la mongo
     const url = "mongodb://mihai:root@localhost:27017/employees"
@@ -20,16 +20,16 @@ const startServer = async () => {
 
     //creare server de apollo
     const server = new ApolloServer({
-        typeDefs,
-        resolvers
+        schema: applyMiddleware(buildFederatedSchema([{typeDefs, resolvers}]), permissions),
+        context: ({req}) => {
+            const user = req.headers.user ? JSON.parse(req.headers.user) : null;
+            return {user};
+        }
     });
 
-    await server.start();
-    server.applyMiddleware({ app });
-
     //pornire server
-    app.listen({port: 5000}, () => {
-        console.log("Server is running on http://localhost:5000/graphql !");
+    server.listen({ port }).then(({url}) => {
+        console.log(`Employees and Projects service ready at ${url}!`);
     });
 };
 

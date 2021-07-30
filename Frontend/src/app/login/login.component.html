@@ -1,0 +1,14 @@
+<h1>LOG IN</h1>
+<div class="container">
+    <div class="formular">
+        <label>
+            Username
+            <input type="text" [(ngModel)]="newUser.username">
+        </label>
+        <label>
+            Password
+            <input type="password" [(ngModel)]="newUser.password">
+        </label>
+        <button mat-flat-button class="form_button" (click)="logIn()">LOG IN</button>
+    </div>
+</div>

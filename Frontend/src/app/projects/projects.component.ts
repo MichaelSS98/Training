@@ -4,6 +4,7 @@ import {Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupProjectComponent } from '../dialogs/projects/popup-project/popup-project.component';
 import {GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT, UPDATE_PROJECT} from './queries'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -28,12 +29,19 @@ export class ProjectsComponent implements OnInit {
 
   private querySubscription!: Subscription;
 
-  constructor(private apollo: Apollo, public dialog: MatDialog) {
+  constructor(private apollo: Apollo, public dialog: MatDialog, private router: Router) {
     this.loading = true;
   };
 
   //On initialisation we get all the entries from the back-end
   ngOnInit(): void {
+
+    const token = localStorage.getItem("token");
+    if (token === null || token === "") {
+      console.log("Log In first please");
+      this.router.navigate(['/login']);
+    }
+
     this.querySubscription = this.apollo.watchQuery<any>({
       query: GET_PROJECTS
     }).valueChanges

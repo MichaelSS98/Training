@@ -7,6 +7,16 @@ const { GraphQLDate } = require('graphql-iso-date');
 //de asemenea aici definim tipurile declarate cu scalar la typeDefs
 
 const resolverEmployee = {
+    EmployeeWithProject: {
+        _resolveReference(object) {
+            return Employee.find({id: object.id});
+        }
+    },
+    Employee: {
+        _resolveReference(object) {
+            return Employee.find({id: object.id});
+        }
+    },
     Query: {
         getEmployees: (parent, args) => {
             return Employee.find({});

@@ -2,6 +2,11 @@ const {Project} = require('../models/Project.js');
 const { GraphQLDateTime } = require('graphql-iso-date');
 
 const resolverProject = {
+    Project: {
+        _resolveReference(object) {
+            return Project.find({id: object.id});
+        }
+    },
     Query: {
         getProjects: (parent, args) => {
             return Project.find({});

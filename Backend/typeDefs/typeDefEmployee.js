@@ -8,7 +8,7 @@ const typeDefEmployee = gql `
 
     scalar ISODate
 
-    type EmployeeWithProject {
+    type EmployeeWithProject @key(fields: "id"){
         id: ID!
         name: String!
         project_id: ID!
@@ -20,7 +20,7 @@ const typeDefEmployee = gql `
         project: Project
     }
 
-    type Employee {
+    type Employee @key(fields: "id"){
         id: ID!
         name: String!
         project_id: ID!
@@ -31,13 +31,13 @@ const typeDefEmployee = gql `
         job_title: String!
     }
 
-    type Query {
+    extend type Query {
         getEmployees: [Employee]
         getEmployeeAndProject(id: ID!): EmployeeWithProject
         getEmployee(name: String!): Employee
     }
 
-    type Mutation {
+    extend type Mutation {
         addEmployee(name: String!, project_id: ID!, adress: String!, email: String!, hire_date: ISODate!, salary: Int!, job_title: String!): Employee
         updateEmployee(id: ID!, name: String!, project_id: ID!, adress: String!, email: String!, hire_date: ISODate!, salary: Int!, job_title: String!): Employee
         deleteEmployee(id: ID!): Employee

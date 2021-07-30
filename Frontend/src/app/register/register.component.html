@@ -1,0 +1,22 @@
+<h1>REGISTER</h1>
+<div class="container">
+    <div class="formular">
+        <label>
+            Username
+            <input type="text" [(ngModel)]="newUser.username">
+        </label>
+        <label>
+            Email
+            <input type="text" [(ngModel)]="newUser.email">
+        </label>
+        <label>
+            Password
+            <input type="password" [(ngModel)]="newUser.password">
+        </label>
+        <label>
+            Confirm Password
+            <input type="password" [(ngModel)]="newUser.confirm_password">
+        </label>
+        <button mat-flat-button class="form_button" (click)="Register()">Register</button>
+    </div>
+</div>

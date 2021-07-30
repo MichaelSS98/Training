@@ -1,0 +1,62 @@
+.formular {
+    margin-left: 5rem;
+    margin-right: 4rem;
+}
+
+input {
+    border-radius: 30px;
+    width: 20rem;
+}
+
+button:hover {
+    background-color: rgba(137, 43, 226, 0.651);
+}
+
+label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    margin-left: 13rem;
+    margin-top: 3rem;
+    font-weight: bold;
+}
+
+.form_button {
+    color: white;
+    background-color: blueviolet;
+    margin-left: 8rem;
+}
+
+.imgbox {
+    display: grid;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    position: absolute;
+    background: url('../../assets/company.jpg') 0 0 no-repeat;
+    background-size: 100% 100%;
+    transform: scale(0.5);
+    z-index: -1;
+}
+
+.center-fit {
+    max-width: 100%;
+    max-height: 80vh;
+    margin: auto;
+}

@@ -13,3 +13,4 @@ db.createUser({
 
 db.createCollection('employees');
 db.createCollection('projects');
+db.createCollection('users');

@@ -2,17 +2,23 @@
 <mat-toolbar color="primary" class="expanded-toolbar">
 
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
-    <button mat-button routerLink="/projects">Projects</button>
-    <button mat-button routerLink="/employees">Employees</button>
+    <button mat-button routerLink="/" *ngIf="token !== null && token !== ''"><mat-icon>home</mat-icon></button>
+    <button mat-button routerLink="/projects" *ngIf="token !== null && token !== ''">Projects</button>
+    <button mat-button routerLink="/employees" *ngIf="token !== null && token !== ''">Employees</button>
+    <button mat-button routerLink="/login" *ngIf="token === null || token === ''">Log In</button>
+    <button mat-button routerLink="/register" *ngIf="token === null || token === ''">Register</button>
+    <button mat-button (click)="logOut()" *ngIf="token !== null && token !== ''">Log Out</button>
   </div>
   <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item routerLink="/"><mat-icon>home</mat-icon> Home</button>
-  <button mat-menu-item routerLink="/projects">Projects</button>;
-  <button mat-menu-item routerLink="/employees">Employees</button>
+  <button mat-menu-item routerLink="/" *ngIf="token !== null && token !== ''"><mat-icon>home</mat-icon> Home</button>
+  <button mat-menu-item routerLink="/projects" *ngIf="token !== null && token !== ''">Projects</button>
+  <button mat-menu-item routerLink="/employees" *ngIf="token !== null && token !== ''">Employees</button>
+  <button mat-menu-item routerLink="/login" *ngIf="token === null || token === ''">Log In</button>
+  <button mat-menu-item routerLink="/register" *ngIf="token === null || token === ''">Register</button>
+  <button mat-menu-item (click)="logOut()" *ngIf="token !== null && token !== ''">Log Out</button>
 </mat-menu>
 <router-outlet></router-outlet>

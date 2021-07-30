@@ -4,6 +4,7 @@ import {Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupEmployeeComponent } from '../dialogs/employees/popup-employee/popup-employee.component';
 import {GET_EMPLOYEES, DELETE_EMPLOYEE, ADD_EMPLOYEE, UPDATE_EMPLOYEE} from './queries'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -31,12 +32,19 @@ export class EmployeesComponent implements OnInit, OnDestroy {
 
   private querySubscription!: Subscription;
 
-  constructor(private apollo: Apollo, public dialog: MatDialog) {
+  constructor(private apollo: Apollo, public dialog: MatDialog, private router: Router) {
     this.loading = true;
    }
 
   //On initialisation we get all the entries from the back-end
   ngOnInit(): void {
+
+    const token = localStorage.getItem("token");
+    if (token === null || token === "") {
+      console.log("Log In first please");
+      this.router.navigate(['/login']);
+    }
+
     this.querySubscription = this.apollo.watchQuery<any>({
       query: GET_EMPLOYEES
     }).valueChanges

@@ -1,5 +1,5 @@
 .formular {
-    margin-left: 5rem;
+    margin-left: 2rem;
     margin-right: 4rem;
 }
 
@@ -21,7 +21,7 @@ label {
 }
 
 h1 {
-    margin-left: 12rem;
+    margin-left: 9rem;
     margin-top: 3rem;
     font-weight: bold;
 }
@@ -29,7 +29,7 @@ h1 {
 .form_button {
     color: white;
     background-color: blueviolet;
-    margin-left: 8rem;
+    margin-left: 7rem;
 }
 
 .imgbox {

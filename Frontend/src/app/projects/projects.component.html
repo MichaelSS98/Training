@@ -20,15 +20,15 @@
             <th mat-header-cell *matHeaderCellDef>ID</th>
             <td mat-cell *matCellDef="let project">{{project.id}}</td>
         </ng-container>
-        <!-- The planne end date column -->
-        <ng-container matColumnDef="planned_end_date">
-            <th mat-header-cell *matHeaderCellDef>Planned End Date</th>
-            <td mat-cell *matCellDef="let project">{{project.planned_end_date}}</td>
-        </ng-container>
         <!-- The start date column -->
         <ng-container matColumnDef="start_date">
             <th mat-header-cell *matHeaderCellDef>Start Date</th>
-            <td mat-cell *matCellDef="let project">{{project.start_date}}</td>
+            <td mat-cell *matCellDef="let project">{{customDateTime(project.start_date)}}</td>
+        </ng-container>
+        <!-- The planne end date column -->
+        <ng-container matColumnDef="planned_end_date">
+            <th mat-header-cell *matHeaderCellDef>Planned End Date</th>
+            <td mat-cell *matCellDef="let project">{{customDateTime(project.planned_end_date)}}</td>
         </ng-container>
         <!-- The project code column -->
         <ng-container matColumnDef="project_code">

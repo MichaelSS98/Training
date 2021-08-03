@@ -51,6 +51,18 @@ export class ProjectsComponent implements OnInit {
       });
   };
 
+  //function that displays the date in a more readable fashion
+  customDateTime(dateString: string): String {
+    const newDate = new Date(dateString);
+    let dayString = "" + newDate.getDate();
+    let monthString = "" + (newDate.getMonth() + 1);
+    let hoursString = "" + newDate.getHours();
+    let minutesString = "" + newDate.getMinutes();
+    let secondsString = "" + newDate.getSeconds();
+
+    return `${monthString}/${dayString}/${newDate.getFullYear()}, ${hoursString}:${minutesString}:${secondsString}`;
+  }
+
   //Popup for adding a new project
   openAddDialog(): void {
     const dialogRef = this.dialog.open(PopupProjectComponent, {

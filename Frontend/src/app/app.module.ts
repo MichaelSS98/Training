@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMatDatetimePickerModule, NgxNativeDateModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -70,7 +71,8 @@ import { LogoutComponent } from './logout/logout.component';
     MatNativeDateModule,
     NgxMatDatetimePickerModule,
     NgxNativeDateModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    MatCarouselModule.forRoot()
   ],
   entryComponents: [PopupEmployeeComponent, DeleteProjectDialogComponent, PopupProjectComponent, DeleteEmployeeDialogComponent],
   providers: [MatDatepickerModule],   

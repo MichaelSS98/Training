@@ -5,18 +5,17 @@
     <h1 mat-dialog-title *ngIf="data.name.length > 0">Plese complete the data in order to update the employee!</h1>
 
     <!-- form created using Angular Material -->
-    <div mat-dialog-content class="inner_form" [formGroup]="projectId">
+    <div mat-dialog-content class="inner_form" [formGroup]="projectId" (ngSubmit)="onClickSubmit()" novalidate #areaForm="ngForm">
         <!-- The name field -->
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name">
         </mat-form-field>
+        <div *ngIf="employeeName!.invalid && employeeName!.touched || employeeName!.dirty" class="errors_section">
+            <small *ngIf="employeeName!.errors?.required" class="text-danger">A username is required!</small>
+        </div>
         <!-- The projecct id field -->
         <mat-form-field appearance="fill">
-            <!--
-            <mat-label>Project ID</mat-label>
-            <input matInput [(ngModel)]="data.project_id">
-            -->
             <mat-label>Project ID</mat-label>
             <mat-select formControlName="project_id">
                 <mat-option *ngFor="let projectId of data.projectIds" [value]="projectId">
@@ -24,16 +23,26 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <div *ngIf="employeeProjectId!.invalid && employeeProjectId!.touched || employeeProjectId!.dirty" class="errors_section">
+            <small *ngIf="employeeProjectId!.errors?.required" class="text-danger">A project ID is required!</small>
+        </div>
         <!-- The adress field -->
         <mat-form-field appearance="fill">
             <mat-label>Adress</mat-label>
             <input matInput formControlName="adress">
         </mat-form-field>
+        <div *ngIf="employeeAdress!.invalid && employeeAdress!.touched || employeeAdress!.dirty" class="errors_section">
+            <small *ngIf="employeeAdress!.errors?.required" class="text-danger">An adress is required!</small>
+        </div>
         <!-- The email field -->
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email">
         </mat-form-field>
+        <div *ngIf="employeeEmail!.invalid && employeeEmail!.touched || employeeEmail!.dirty" class="errors_section">
+            <small *ngIf="employeeEmail!.errors?.required" class="text-danger">An email is required!</small>
+            <small *ngIf="employeeEmail!.errors?.pattern" class="text-danger">An valid email must be provided!</small>
+        </div>
         <!-- The hire date field -->
         <mat-form-field appearance="fill">
             <mat-label>Hire Date</mat-label>
@@ -41,20 +50,30 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        <div *ngIf="employeeHireDate!.invalid && employeeHireDate!.touched || employeeHireDate!.dirty" class="errors_section">
+            <small *ngIf="employeeHireDate!.errors?.required" class="text-danger">A Hire Date is required!</small>
+        </div>
         <!-- The salary field -->
         <mat-form-field appearance="fill">
             <mat-label>Salary</mat-label>
             <input matInput formControlName="salary">
         </mat-form-field>
+        <div *ngIf="employeeSalary!.invalid && employeeSalary!.touched || employeeSalary!.dirty" class="errors_section">
+            <small *ngIf="employeeSalary!.errors?.required" class="text-danger">How dare you forget the salary?!</small>
+            <small *ngIf="employeeSalary!.errors?.pattern" class="text-danger">An integer needs to be provided!</small>
+        </div>
         <!-- The job title field -->
         <mat-form-field appearance="fill" class="final_input">
             <mat-label>Job Title</mat-label>
             <input matInput formControlName="job_title">
         </mat-form-field>
+        <div *ngIf="employeeJobTitle!.invalid && employeeJobTitle!.touched || employeeJobTitle!.dirty" class="errors_section">
+            <small *ngIf="employeeJobTitle!.errors?.required" class="text-danger">A Job Title is required!</small>
+        </div>
     </div>
     <div mat-dialog-actions class="inner_buttons">
         <button mat-button (click)="onClickCancel()">CANCEL</button>
-        <button mat-button (click)="onClickSubmit()" [mat-dialog-close]="data">SUBMIT</button>
+        <button mat-button (click)="onClickSubmit()" [mat-dialog-close]="data" [disabled]="areaForm.invalid">SUBMIT</button>
     </div>
 </div>
 

@@ -20,9 +20,9 @@ export class PopupEmployeeComponent implements OnInit {
       name: ["", Validators.required],
       project_id: ["", Validators.required],
       adress: ["", Validators.required],
-      email: ["", Validators.required],
+      email: new FormControl("", [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       hire_date: new FormControl(new Date(), [Validators.required]),
-      salary: ["", Validators.required],
+      salary: new FormControl("", [Validators.required, Validators.pattern('^[0-9]*$')]),
       job_title: ["", Validators.required]
     });
    }
@@ -40,6 +40,34 @@ export class PopupEmployeeComponent implements OnInit {
       this.projectId.get('hire_date')?.setValue(new Date(this.data.hire_date));
       this.projectId.get('job_title')?.setValue(this.data.job_title);
     }
+  }
+
+  get employeeName() {
+    return this.projectId.get('name');
+  }
+
+  get employeeEmail() {
+    return this.projectId.get('email');
+  }
+
+  get employeeAdress() {
+    return this.projectId.get('adress');
+  }
+
+  get employeeHireDate() {
+    return this.projectId.get('hire_date');
+  }
+
+  get employeeSalary() {
+    return this.projectId.get('salary');
+  }
+
+  get employeeJobTitle() {
+    return this.projectId.get('job_title');
+  }
+
+  get employeeProjectId() {
+    return this.projectId.get('project_id');
   }
 
   onClickCancel(): void {

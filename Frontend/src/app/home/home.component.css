@@ -1,6 +1,61 @@
-h1, h3 {
+h1{
     margin-top: 1rem;
     text-align: center;
-    color: blueviolet;
+    color: black;
     font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    margin-top: 1rem;
+    text-align: center;
+    color: rgb(63, 81, 181);
+    font-weight: bold;
+    font-size: 30px;
+}
+
+mat-carousel {
+    width: 90% !important;
+}
+
+.upper_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 5rem;
+    margin-top: 3rem;
+    border-radius: 30px;
+    width: 90%;
+    height: 15rem;
+    background-image: linear-gradient(to left, blueviolet, rgb(63, 81, 181));
+    box-shadow: 0px 1px 5px 1.5px blueviolet;
+}
+
+.lower_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 5rem;
+    margin-top: 3rem;
+    border-radius: 30px;
+    width: 90%;
+    height: 15rem;
+    background-image: linear-gradient(to right, blueviolet, rgb(63, 81, 181));
+    box-shadow: 0px 1px 5px 1.5px blueviolet;
+}
+
+.info_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+img {
+    border-radius: 50%;
 }

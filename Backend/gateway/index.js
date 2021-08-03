@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const {ApolloServer} = require('apollo-server-express');
+const {ApolloServer, AuthenticationError} = require('apollo-server-express');
 const {ApolloGateway, RemoteGraphQLDataSource} = require('@apollo/gateway');
 const expressJwt = require("express-jwt");
 
@@ -40,7 +40,12 @@ const startServer = async () => {
     const server = new ApolloServer({
         gateway,
         subscription: false,
-        context: ({req}) => { //creare context
+        context: ({req, _, next}) => { //creare context
+
+            // if (!req.headers.authorization)
+            //     throw new AuthenticationError("You must be signed in for this operation!");
+
+            // const token = req.headers.authorization.split(" ")[1];
             const user = req.user || null;
             return {user};
         }

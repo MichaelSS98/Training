@@ -39,7 +39,7 @@
         <!-- The hire date column -->
         <ng-container matColumnDef="hire_date">
             <th mat-header-cell *matHeaderCellDef>Hire Date</th>
-            <td mat-cell *matCellDef="let employee">{{employee.hire_date}}</td>
+            <td mat-cell *matCellDef="let employee">{{customDate(employee)}}</td>
         </ng-container>
         <!-- The job title column -->
         <ng-container matColumnDef="job_title">

@@ -5,14 +5,40 @@
     justify-content: center;
 }
 
+mat-form-field {
+    width: 92%;
+    padding-left: 1.5rem;
+}
+
+.text-danger {
+    color: red;
+}
+
+small {
+    padding-left: 2rem;
+}
+
+mat-label {
+    color: blueviolet;
+}
+
 .inner_form div {
     display: inline-block;
     justify-content: space-between;
     padding-bottom: 2.5rem;
 }
 
-mat-form-field {
-    padding-left: 1.5rem;
+.errors_section {
+    padding-bottom: 0.5rem !important;
+}
+
+.inner_form::-webkit-scrollbar {
+    display: none;
+}
+
+.inner_form {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 h1 {
@@ -47,8 +73,4 @@ button {
 
 button:hover {
     background-color: rgba(137, 43, 226, 0.651);
-}
-
-.final_input {
-    padding-left: 8rem;
 }

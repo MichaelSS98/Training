@@ -8,6 +8,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  slides = [
+    {'image': '../../assets/carusel1.jpeg'}, 
+    {'image': '../../assets/carusel2.jpg'},
+    {'image': '../../assets/carusel3.jpg'}
+  ];
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {

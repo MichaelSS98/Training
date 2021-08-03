@@ -5,12 +5,15 @@
     <h1 mat-dialog-title *ngIf="data.project_name.length > 0">Plese complete the data in order to update the project!</h1>
 
     <!-- form created using Angular Material -->
-    <div mat-dialog-content class="inner_form" [formGroup]="project">
+    <div mat-dialog-content class="inner_form" [formGroup]="project" (ngSubmit)="onClickSubmit()" novalidate #areaForm="ngForm">
         <!-- The project name field -->
         <mat-form-field appearance="fill">
             <mat-label>Project Name</mat-label>
             <input matInput formControlName="project_name">
         </mat-form-field>
+        <div *ngIf="projectName!.invalid && projectName!.touched || projectName!.dirty" class="errors_section">
+            <small *ngIf="projectName!.errors?.required" class="text-danger">A project name is required!</small>
+        </div>
         <!-- The start date field -->
         <mat-form-field appearance="fill">
             <mat-label>Start Date</mat-label>
@@ -18,6 +21,9 @@
             <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
         </mat-form-field>
+        <div *ngIf="projectStartDate!.invalid && projectStartDate!.touched || projectStartDate!.dirty" class="errors_section">
+            <small *ngIf="projectStartDate!.errors?.required" class="text-danger">A start date is required!</small>
+        </div>
         <!-- The planned end date field -->
         <mat-form-field appearance="fill">
             <mat-label>Planned End Date</mat-label>
@@ -25,20 +31,29 @@
             <mat-datepicker-toggle matSuffix [for]="$any(my_picker)"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker #my_picker></ngx-mat-datetime-picker>
         </mat-form-field>
+        <div *ngIf="projectPlannedEndDate!.invalid && projectPlannedEndDate!.touched || projectPlannedEndDate!.dirty" class="errors_section">
+            <small *ngIf="projectPlannedEndDate!.errors?.required" class="text-danger">A planned end date is required!</small>
+        </div>
         <!-- The description field -->
         <mat-form-field appearance="fill" class="final_input">
             <mat-label>Description</mat-label>
             <input matInput formControlName="description">
         </mat-form-field>
+        <div *ngIf="projectDescription!.invalid && projectDescription!.touched || projectDescription!.dirty" class="errors_section">
+            <small *ngIf="projectDescription!.errors?.required" class="text-danger">A project description is required!</small>
+        </div>
         <!-- The project code field -->
         <mat-form-field appearance="fill">
             <mat-label>Project Code</mat-label>
             <input matInput formControlName="project_code">
         </mat-form-field>
+        <div *ngIf="projectCode!.invalid && projectCode!.touched || projectCode!.dirty" class="errors_section">
+            <small *ngIf="projectCode!.errors?.required" class="text-danger">A project code is required!</small>
+        </div>
     </div>
     <div mat-dialog-actions class="inner_buttons">
         <button mat-button (click)="onClickCancel()">CANCEL</button>
-        <button mat-button (click)="onClickSubmit()" [mat-dialog-close]="data">SUBMIT</button>
+        <button mat-button (click)="onClickSubmit()" [mat-dialog-close]="data" [disabled]="areaForm.invalid">SUBMIT</button>
     </div>
 </div>
 

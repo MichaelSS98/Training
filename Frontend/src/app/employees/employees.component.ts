@@ -64,16 +64,24 @@ export class EmployeesComponent implements OnInit, OnDestroy {
       });
   }
 
+  //function that displays the date in a more readable fashion
+  customDate(employee: any): String {
+    const newDate = new Date(employee.hire_date);
+    let dayString = "" + newDate.getDate();
+    let monthString = "" + (newDate.getMonth() + 1);
+
+    return `${monthString}/${dayString}/${newDate.getFullYear()}`;
+  }
+
   //Popup for adding a new employee
   openAddDialog(): void {
     const dialogRef = this.dialog.open(PopupEmployeeComponent, {
       width: '750px',
-      data: {...this.empty_employee, projectIds: this.projects}
+      data: {...this.empty_employee,
+            projectIds: this.projects
+          }
     });
     dialogRef.afterClosed().subscribe(res => {
-      // if (res.name === "" || res.adress === "" || res.email === "" || res.hire_date === "" ||
-      //   res.salary === "" || res.project_id === "" || res.job_title === "")
-      //   console.log("");
 
       if (res !== undefined)
       {
@@ -115,7 +123,9 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     const employeeReplica = JSON.parse(JSON.stringify(employee));
     const dialogRef = this.dialog.open(PopupEmployeeComponent, {
       width: '750px',
-      data: {...employeeReplica, projectIds: this.projects}
+      data: {...employeeReplica, 
+            projectIds: this.projects
+          }
     });
     dialogRef.afterClosed().subscribe(res => {
 

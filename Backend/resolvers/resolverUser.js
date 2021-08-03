@@ -51,9 +51,9 @@ const resolverUser = {
                 return "Wrong Credentials!"
 
             //creare token
-            const encodingOptions = {...generalJWTOptions, expiresIn: "1m"};
+            const encodingOptions = {...generalJWTOptions, expiresIn: "1h"};
             const token = await jwt.sign({id: storedCredentials.id, role: storedCredentials.role}, jwtKey, encodingOptions);
-
+            
             return token;
         },
         register: async (parent, args) => {

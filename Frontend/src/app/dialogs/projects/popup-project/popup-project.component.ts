@@ -36,6 +36,26 @@ export class PopupProjectComponent implements OnInit {
     }
   };
 
+  get projectName() {
+    return this.project.get('project_name');
+  }
+
+  get projectStartDate() {
+    return this.project.get('start_date');
+  }
+
+  get projectPlannedEndDate() {
+    return this.project.get('planned_end_date');
+  }
+
+  get projectDescription() {
+    return this.project.get('description');
+  }
+
+  get projectCode() {
+    return this.project.get('project_code');
+  }
+
   onClickCancel(): void {
     this.dialogRef.close();
   };

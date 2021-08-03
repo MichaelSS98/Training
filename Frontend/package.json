@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~12.1.0-",
     "@angular/router": "~12.1.0-",
     "@apollo/client": "^3.0.0",
+    "@ngmodule/material-carousel": "^0.6.0",
     "apollo-angular": "^2.6.0",
     "bcrypt": "^5.0.1",
     "graphql": "^15.0.0",

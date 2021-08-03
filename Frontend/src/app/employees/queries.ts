@@ -18,6 +18,15 @@ export const GET_EMPLOYEES = gql`
   }
 `;
 
+//extract all projects
+export const GET_PROJECTS = gql`
+    query Query {
+        getProjects {
+            id
+        }
+    }
+`;
+
 //delete an employee
 export const DELETE_EMPLOYEE = gql`
   mutation DeleteEmployeeMutation($id: ID!) {

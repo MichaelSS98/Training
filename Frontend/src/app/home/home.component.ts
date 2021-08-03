@@ -18,14 +18,6 @@ export class HomeComponent implements OnInit {
       console.log("Log In first please");
       this.router.navigate(['/login']);
     }
-
-    //if you just logged in, refresh the app so that the taskbar updates
-    if (!localStorage.getItem("reload")) {
-      localStorage.setItem("reload", 'no-reload');
-      window.location.reload();
-    }
-    else
-      localStorage.removeItem("reload");
   }
 
 }

@@ -59,33 +59,36 @@ export class ProjectsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
 
-      this.apollo.mutate({
-        mutation: ADD_PROJECT,
-        variables: {
-          project_name: res.project_name,
-          start_date: res.start_date,
-          planned_end_date: res.planned_end_date,
-          description: res.description,
-          project_code: res.project_code
-        },
-        update: (cache, {data}: any) => {
-          //get existing entries
-          const existingProjects: any = cache.readQuery({query: GET_PROJECTS});
+      if (res !== undefined)
+      {
+        this.apollo.mutate({
+          mutation: ADD_PROJECT,
+          variables: {
+            project_name: res.project_name,
+            start_date: res.start_date,
+            planned_end_date: res.planned_end_date,
+            description: res.description,
+            project_code: res.project_code
+          },
+          update: (cache, {data}: any) => {
+            //get existing entries
+            const existingProjects: any = cache.readQuery({query: GET_PROJECTS});
 
-          //update cache with the old entries and the new one
-          cache.writeQuery({
-            query: GET_PROJECTS,
-            data: {getProjects: [
-                ...existingProjects?.getProjects,
-                data?.addProject
-              ]}
-          })
-        }
-      }).subscribe(({data}) => {
-        console.log("Data added: ", data);
-      }, (error) => {
-        console.log(error);
-      })
+            //update cache with the old entries and the new one
+            cache.writeQuery({
+              query: GET_PROJECTS,
+              data: {getProjects: [
+                  ...existingProjects?.getProjects,
+                  data?.addProject
+                ]}
+            })
+          }
+        }).subscribe(({data}) => {
+          console.log("Data added: ", data);
+        }, (error) => {
+          console.log(error);
+        })
+      }
     });
   };
 
@@ -98,37 +101,40 @@ export class ProjectsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
 
-      this.apollo.mutate({
-        mutation: UPDATE_PROJECT,
-        variables: {
-          id: res.id,
-          project_name: res.project_name,
-          start_date: res.start_date,
-          planned_end_date: res.planned_end_date,
-          description: res.description,
-          project_code: res.project_code
-        },
-        update: (cache) => {
-          const existingProjects: any = cache.readQuery({query: GET_PROJECTS});
-          
-          //update the project from cache
-          const newProjects = existingProjects.getProjects.map((e: any) => {
-            if (e.id === project.id)
-              return res;
-            else
-              return e;
-          });
+      if (res !== undefined)
+      {
+        this.apollo.mutate({
+          mutation: UPDATE_PROJECT,
+          variables: {
+            id: res.id,
+            project_name: res.project_name,
+            start_date: res.start_date,
+            planned_end_date: res.planned_end_date,
+            description: res.description,
+            project_code: res.project_code
+          },
+          update: (cache) => {
+            const existingProjects: any = cache.readQuery({query: GET_PROJECTS});
+            
+            //update the project from cache
+            const newProjects = existingProjects.getProjects.map((e: any) => {
+              if (e.id === project.id)
+                return res;
+              else
+                return e;
+            });
 
-          cache.writeQuery({
-            query: GET_PROJECTS,
-            data: {getProjects: newProjects}
-          });
-        }
-      }).subscribe(({data}) => {
-        console.log("Data added: ", data);
-      }, (error) => {
-        console.log(error);
-      })
+            cache.writeQuery({
+              query: GET_PROJECTS,
+              data: {getProjects: newProjects}
+            });
+          }
+        }).subscribe(({data}) => {
+          console.log("Data added: ", data);
+        }, (error) => {
+          console.log(error);
+        })
+      }
     });
   };
 

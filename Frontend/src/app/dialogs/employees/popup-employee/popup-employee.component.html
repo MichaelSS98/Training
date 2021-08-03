@@ -5,46 +5,56 @@
     <h1 mat-dialog-title *ngIf="data.name.length > 0">Plese complete the data in order to update the employee!</h1>
 
     <!-- form created using Angular Material -->
-    <div mat-dialog-content class="inner_form">
+    <div mat-dialog-content class="inner_form" [formGroup]="projectId">
         <!-- The name field -->
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput [(ngModel)]="data.name">
+            <input matInput formControlName="name">
         </mat-form-field>
         <!-- The projecct id field -->
         <mat-form-field appearance="fill">
+            <!--
             <mat-label>Project ID</mat-label>
             <input matInput [(ngModel)]="data.project_id">
+            -->
+            <mat-label>Project ID</mat-label>
+            <mat-select formControlName="project_id">
+                <mat-option *ngFor="let projectId of data.projectIds" [value]="projectId">
+                    {{projectId.id}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <!-- The adress field -->
         <mat-form-field appearance="fill">
             <mat-label>Adress</mat-label>
-            <input matInput [(ngModel)]="data.adress">
+            <input matInput formControlName="adress">
         </mat-form-field>
         <!-- The email field -->
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput [(ngModel)]="data.email">
+            <input matInput formControlName="email">
         </mat-form-field>
         <!-- The hire date field -->
         <mat-form-field appearance="fill">
             <mat-label>Hire Date</mat-label>
-            <input matInput [(ngModel)]="data.hire_date">
+            <input matInput [matDatepicker]="picker" formControlName="hire_date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <!-- The salary field -->
         <mat-form-field appearance="fill">
             <mat-label>Salary</mat-label>
-            <input matInput [(ngModel)]="data.salary">
+            <input matInput formControlName="salary">
         </mat-form-field>
         <!-- The job title field -->
         <mat-form-field appearance="fill" class="final_input">
             <mat-label>Job Title</mat-label>
-            <input matInput [(ngModel)]="data.job_title">
+            <input matInput formControlName="job_title">
         </mat-form-field>
     </div>
     <div mat-dialog-actions class="inner_buttons">
         <button mat-button (click)="onClickCancel()">CANCEL</button>
-        <button mat-button [mat-dialog-close]="data">SUBMIT</button>
+        <button mat-button (click)="onClickSubmit()" [mat-dialog-close]="data">SUBMIT</button>
     </div>
 </div>
 

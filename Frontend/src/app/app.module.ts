@@ -14,9 +14,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatDialogModule} from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMatDatetimePickerModule, NgxNativeDateModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmployeesComponent } from './employees/employees.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { GraphQLModule } from './graphql.module';
@@ -59,10 +63,17 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     GraphQLModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMatDatetimePickerModule,
+    NgxNativeDateModule,
+    NgxMatNativeDateModule
   ],
   entryComponents: [PopupEmployeeComponent, DeleteProjectDialogComponent, PopupProjectComponent, DeleteEmployeeDialogComponent],
-  providers: [],   
+  providers: [MatDatepickerModule],   
   bootstrap: [AppComponent]
 })
 export class AppModule { }

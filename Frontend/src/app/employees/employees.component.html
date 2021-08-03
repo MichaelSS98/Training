@@ -1,5 +1,5 @@
 <h1>THE EMPLOYEES SECTION!</h1>
-<h3>THERE ARE {{employees.length}} EMPLOYEES HERE CURRENTLY!</h3>
+<h3 *ngIf="employees !== null">THERE ARE {{employees.length}} EMPLOYEES HERE CURRENTLY!</h3>
 
 <!-- The button to add a new employee -->
 <div *ngIf="loading">Loading...</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { gql } from 'apollo-angular';
 import { Apollo } from 'apollo-angular';
 import { Router } from '@angular/router';
+import { SharedService } from '../shared.service';
 
 const LOGIN = gql`
   mutation LoginMutation($password: String!, $username: String!) {
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     password: ""
   };
 
-  constructor(private apollo: Apollo, private router: Router) { }
+  constructor(private apollo: Apollo, private router: Router,
+              private sharedService: SharedService) { }
 
   ngOnInit(): void {
   }
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
         if (data.login !== "Wrong Credentials!")
         {
           localStorage.setItem("token", data.login);
+          this.sharedService.sendChangeHeaderEvent();
           this.router.navigate(['']);
         }
       }, (error) => {

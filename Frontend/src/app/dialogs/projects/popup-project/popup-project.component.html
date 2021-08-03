@@ -5,36 +5,40 @@
     <h1 mat-dialog-title *ngIf="data.project_name.length > 0">Plese complete the data in order to update the project!</h1>
 
     <!-- form created using Angular Material -->
-    <div mat-dialog-content class="inner_form">
+    <div mat-dialog-content class="inner_form" [formGroup]="project">
         <!-- The project name field -->
         <mat-form-field appearance="fill">
             <mat-label>Project Name</mat-label>
-            <input matInput [(ngModel)]="data.project_name">
+            <input matInput formControlName="project_name">
         </mat-form-field>
         <!-- The start date field -->
         <mat-form-field appearance="fill">
             <mat-label>Start Date</mat-label>
-            <input matInput [(ngModel)]="data.start_date">
+            <input matInput [ngxMatDatetimePicker]="picker" formControlName="start_date">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
         </mat-form-field>
         <!-- The planned end date field -->
         <mat-form-field appearance="fill">
             <mat-label>Planned End Date</mat-label>
-            <input matInput [(ngModel)]="data.planned_end_date">
+            <input matInput [ngxMatDatetimePicker]="my_picker" formControlName="planned_end_date">
+            <mat-datepicker-toggle matSuffix [for]="$any(my_picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #my_picker></ngx-mat-datetime-picker>
         </mat-form-field>
         <!-- The description field -->
         <mat-form-field appearance="fill" class="final_input">
             <mat-label>Description</mat-label>
-            <input matInput [(ngModel)]="data.description">
+            <input matInput formControlName="description">
         </mat-form-field>
         <!-- The project code field -->
         <mat-form-field appearance="fill">
             <mat-label>Project Code</mat-label>
-            <input matInput [(ngModel)]="data.project_code">
+            <input matInput formControlName="project_code">
         </mat-form-field>
     </div>
     <div mat-dialog-actions class="inner_buttons">
         <button mat-button (click)="onClickCancel()">CANCEL</button>
-        <button mat-button [mat-dialog-close]="data">SUBMIT</button>
+        <button mat-button (click)="onClickSubmit()" [mat-dialog-close]="data">SUBMIT</button>
     </div>
 </div>
 

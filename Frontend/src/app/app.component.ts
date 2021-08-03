@@ -1,5 +1,7 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from './shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,13 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Frontend';
   token = localStorage.getItem("token");
+  clickEventSubscription: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sharedService: SharedService) {
+    this.clickEventSubscription = this.sharedService.getChangeHeaderEvent().subscribe(() => {
+      this.refreshToken();
+    });
+  }
 
   ngOnInit(): void {
     //refresh the value of token
@@ -28,5 +35,9 @@ export class AppComponent {
     //refresh the token value and therefore the taskbar
     this.ngOnInit();
   };
+
+  refreshToken(): void {
+    this.token = localStorage.getItem("token");
+  }
 
 }

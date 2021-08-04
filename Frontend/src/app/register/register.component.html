@@ -1,4 +1,7 @@
 <h1>REGISTER</h1>
+<h3 class="fieldError" *ngIf="incompleteFieldError">ALL FIELDS ARE MANDATORY FOR REGISTER!</h3>
+<h3 class="passwordError" *ngIf="passwordsDifferError">THE PASSWORDS PROVIDED DO NOT MATCH!</h3>
+<h3 class="emailError" *ngIf="emailValidationError">THE EMAIL PROVIDED IS NOT VALID!</h3>
 
 <!--The Register form-->
 <div class="container">
@@ -16,12 +19,24 @@
         <!--The password input-->
         <label>
             Password
-            <input type="password" [(ngModel)]="newUser.password">
+            <div class="buttonIn">
+                <input [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="newUser.password">
+                <button mat-icon-button (click)="hidePassword = !hidePassword" class="passwordButton">
+                    <mat-icon *ngIf="hidePassword">visibility</mat-icon>
+                    <mat-icon *ngIf="!hidePassword">visibility_off</mat-icon>
+                </button>
+            </div>
         </label>
         <!--The confirm password input-->
         <label>
             Confirm Password
-            <input type="password" [(ngModel)]="newUser.confirm_password">
+            <div class="buttonIn">
+                <input [type]="hideCPassword ? 'password' : 'text'" [(ngModel)]="newUser.confirm_password">
+                <button mat-icon-button (click)="hideCPassword = !hideCPassword" class="passwordButton">
+                    <mat-icon *ngIf="hideCPassword">visibility</mat-icon>
+                    <mat-icon *ngIf="!hideCPassword">visibility_off</mat-icon>
+                </button>
+            </div>
         </label>
         <button mat-flat-button class="form_button" (click)="Register()">Register</button>
     </div>

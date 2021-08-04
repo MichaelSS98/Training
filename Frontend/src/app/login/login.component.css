@@ -3,9 +3,27 @@
     margin-right: 4rem;
 }
 
+.buttonIn {
+    position: relative;
+}
+
 input {
     border-radius: 30px;
     width: 20rem;
+    height: 1.5rem;
+}
+
+mat-icon {
+    color: blueviolet;
+}
+
+.passwordButton {
+    position: absolute;
+    right: 0.3rem;
+    z-index: 2;
+    top: -0.3rem;
+    cursor: pointer;
+    transform: translateX(2px);
 }
 
 button:hover {
@@ -24,6 +42,12 @@ h1 {
     margin-left: 10rem;
     margin-top: 3rem;
     font-weight: bold;
+}
+
+h3 {
+    font-weight: bold;
+    color: 	rgb(118,118,167);
+    margin-left: 2.8rem;
 }
 
 .form_button {

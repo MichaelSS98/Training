@@ -17,6 +17,9 @@ const LOGIN = gql`
 })
 export class LoginComponent implements OnInit {
 
+  hide: boolean = true;
+  incompleteFieldError: boolean = false;
+
   //the entry in which we keep the form information
   newUser: any = {
     username: "",
@@ -33,8 +36,14 @@ export class LoginComponent implements OnInit {
     
     //check if all the credentials are completed
     if (this.newUser.username === "" || this.newUser.password === "")
+    {
       console.log("Missing credentials for login!");
+      this.incompleteFieldError = true;
+    }
     else
+    {
+      this.incompleteFieldError = false;
+
       this.apollo.mutate({
         mutation: LOGIN,
         variables: {
@@ -52,6 +61,7 @@ export class LoginComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
+    }
   };
 
 }

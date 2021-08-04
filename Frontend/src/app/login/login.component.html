@@ -1,4 +1,5 @@
 <h1>LOG IN</h1>
+<h3 *ngIf="incompleteFieldError">ALL FIELDS ARE MANDATORY FOR LOG IN!</h3>
 
 <!--The Log in form-->
 <div class="container">
@@ -11,7 +12,13 @@
         <!--The password input-->
         <label>
             Password
-            <input type="password" [(ngModel)]="newUser.password">
+            <div class="buttonIn">
+                <input [type]="hide ? 'password' : 'text'" [(ngModel)]="newUser.password">
+                <button mat-icon-button (click)="hide = !hide" class="passwordButton">
+                    <mat-icon *ngIf="hide">visibility</mat-icon>
+                    <mat-icon *ngIf="!hide">visibility_off</mat-icon>
+                </button>
+            </div>
         </label>
         <button mat-flat-button class="form_button" (click)="logIn()">LOG IN</button>
     </div>

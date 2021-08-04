@@ -3,9 +3,27 @@
     margin-right: 4rem;
 }
 
+.buttonIn {
+    position: relative;
+}
+
 input {
     border-radius: 30px;
     width: 20rem;
+    height: 1.5rem;
+}
+
+mat-icon {
+    color: blueviolet;
+}
+
+.passwordButton {
+    position: absolute;
+    right: 0.3rem;
+    z-index: 2;
+    top: -0.3rem;
+    cursor: pointer;
+    transform: translateX(2px);
 }
 
 button:hover {
@@ -26,10 +44,28 @@ h1 {
     font-weight: bold;
 }
 
+.fieldError {
+    font-weight: bold;
+    color: rgb(118,118,167);;
+    margin-left: 2.2rem;
+}
+
+.passwordError {
+    font-weight: bold;
+    color: rgb(118,118,167);;
+    margin-left: 2.1rem;
+}
+
+.emailError {
+    font-weight: bold;
+    color: rgb(118,118,167);;
+    margin-left: 3.9rem;
+}
+
 .form_button {
     color: white;
     background-color: blueviolet;
-    margin-left: 7rem;
+    margin-left: 8rem;
 }
 
 .imgbox {

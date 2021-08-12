@@ -3,6 +3,17 @@ const cors = require('cors');
 const {ApolloServer, AuthenticationError} = require('apollo-server-express');
 const {ApolloGateway, RemoteGraphQLDataSource} = require('@apollo/gateway');
 const expressJwt = require("express-jwt");
+const jwt = require('jsonwebtoken');
+
+//JWT options
+// const generalJWTOptions = {
+//     issuer: "Mihai Constantin",
+//     subject: "Authorization Token guaranteed by Mihai Constantin",
+//     audience: "Trainees",
+//     algorithm: "HS256"
+// };
+
+// const jwtKey = "we_rock";
 
 const startServer = async () => {
 
@@ -10,7 +21,7 @@ const startServer = async () => {
     const url = "http://localhost:5001";
 
     const app = express(); //creare server
-    app.use(express.json()); //parsare de URL. Stiu ca nu trebuia, dar am zis ca poate e nevoie mai incolo
+    app.use(express.json()); //parsare de campuri in format JSON. Stiu ca nu trebuia, dar am zis ca poate e nevoie mai incolo
     app.use(cors());
 
     //decodare JWT token
@@ -42,11 +53,8 @@ const startServer = async () => {
         subscription: false,
         context: ({req, _, next}) => { //creare context
 
-            // if (!req.headers.authorization)
-            //     throw new AuthenticationError("You must be signed in for this operation!");
-
-            // const token = req.headers.authorization.split(" ")[1];
             const user = req.user || null;
+
             return {user};
         }
     });

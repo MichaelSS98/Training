@@ -16,9 +16,9 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 
   //if there is a token, it will be added to the headers field of the request
   const auth = setContext((operatio, context) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
 
-    if (token === null || token === "")
+    if (token === null)
       return {};
     else
       return {

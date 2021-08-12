@@ -36,8 +36,8 @@ export class ProjectsComponent implements OnInit {
   //On initialisation we get all the entries from the back-end
   ngOnInit(): void {
 
-    const token = localStorage.getItem("token");
-    if (token === null || token === "") {
+    const token = localStorage.getItem("accessToken");
+    if (token === null) {
       console.log("Log In first please");
       this.router.navigate(['/login']);
     }

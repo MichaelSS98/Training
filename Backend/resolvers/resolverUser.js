@@ -10,7 +10,68 @@ const generalJWTOptions = {
     algorithm: "HS256"
 };
 
-const jwtKey = "we_rock";
+const jwtAccessKey = "we_rock";
+const jwtRefreshKey = "we_rock_on_repeat";
+
+//function that generates a new access token
+const createAccessToken = async (id, role) => {
+
+    const encodingOptions = {...generalJWTOptions, expiresIn: "1h"};
+    const token = await jwt.sign({id, role}, jwtAccessKey, encodingOptions);
+    
+    return token;
+};
+
+//function that generates a new refresh token
+const createRefreshToken = async (id, role) => {
+
+    const encodingOptions = {...generalJWTOptions, expiresIn: "1d"};
+    const token = await jwt.sign({id, role}, jwtRefreshKey, encodingOptions);
+    
+    return token;
+};
+
+//function that checks the refresh token and extracts the information from it
+const verifyRefreshToken = async (token) => {
+
+    try 
+    {
+        const decodingOptions = {...generalJWTOptions, ignoreExpiration: false};
+        const decoded = await jwt.verify(token, jwtRefreshKey, decodingOptions);
+
+        const userInDB =  await User.findOne({_id: decoded.id});
+
+        if (userInDB === null)
+            throw new Error('Refresh Token is deprecated!');
+
+        return {data: decoded, refreshToken: token};
+    }
+    catch(e)
+    {
+        if (e.message === 'jwt expired')
+        {
+            const decodingOptions = {...generalJWTOptions, ignoreExpiration: true};
+            const decoded = await jwt.verify(token, jwtRefreshKey, decodingOptions);
+
+            const userInDB =  await User.findOne({_id: decoded.id});
+
+            if (userInDB === null)
+                throw new Error('Refresh Token is deprecated!');
+            
+            const refreshToken = await createRefreshToken(decoded.id, decoded.role);
+
+            return {data: decoded, refreshToken: refreshToken};
+        }
+        else if (e.message === 'jwt malformed')
+        {
+            throw new Error('Refresh token is malformed!');
+        }
+        else
+        {
+            throw new Error('Refresh token is compormised!');
+        }
+    }
+};
 
 //functie de criptare a parolei
 const encrypt = async (plaintTextPassword) => {
@@ -50,11 +111,11 @@ const resolverUser = {
             if (passwordCheck === false)
                 return "Wrong Credentials!"
 
-            //creare token
-            const encodingOptions = {...generalJWTOptions, expiresIn: "1h"};
-            const token = await jwt.sign({id: storedCredentials.id, role: storedCredentials.role}, jwtKey, encodingOptions);
-            
-            return token;
+            //creare tokens
+            const accessToken = await createAccessToken(storedCredentials.id, storedCredentials.role);
+            const refreshToken = await createRefreshToken(storedCredentials.id, storedCredentials.role);
+
+            return {accessToken, refreshToken};
         },
         register: async (parent, args) => {
 
@@ -69,6 +130,13 @@ const resolverUser = {
             });
             await e.save();
             return "User created successfully!"
+        },
+        refreshToken: async (parent, args) => {
+            
+            const {data, refreshToken} = await verifyRefreshToken(args.token);
+            const accessToken = await createAccessToken(data.id, data.role);
+
+            return {accessToken, refreshToken};
         },
         deleteAccount: async (parent, args, {user}) => {
 

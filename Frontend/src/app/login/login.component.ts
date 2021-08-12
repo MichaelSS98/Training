@@ -6,7 +6,11 @@ import { SharedService } from '../shared.service';
 
 const LOGIN = gql`
   mutation LoginMutation($password: String!, $username: String!) {
-    login(password: $password, username: $username)
+    login(password: $password, username: $username) 
+    {
+      accessToken
+      refreshToken
+    }
   }  
 `;
 
@@ -54,7 +58,8 @@ export class LoginComponent implements OnInit {
         //if everything worked correctly store the token in localStorage
         if (data.login !== "Wrong Credentials!")
         {
-          localStorage.setItem("token", data.login);
+          localStorage.setItem("accessToken", data.login.accessToken);
+          localStorage.setItem("refreshToken", data.login.refreshToken);
           this.sharedService.sendChangeHeaderEvent();
           this.router.navigate(['']);
         }

@@ -10,13 +10,19 @@ const typeDefUser = gql `
         role: String!
     }
 
+    type Tokens {
+        accessToken: String!
+        refreshToken: String!
+    }
+
     extend type Query {
         getUsingToken: User
     }
 
     extend type Mutation {
-        login(username: String!, password: String!): String
+        login(username: String!, password: String!): Tokens
         register(username: String!, email: String!, password: String!): String
+        refreshToken(token: String!): Tokens
         deleteAccount: String
     }
 `

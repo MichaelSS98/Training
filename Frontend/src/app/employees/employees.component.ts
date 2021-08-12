@@ -41,8 +41,8 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     //check if the user is authenticated. If not redirect to log in
-    const token = localStorage.getItem("token");
-    if (token === null || token === "") {
+    const token = localStorage.getItem("accessToken");
+    if (token === null) {
       console.log("Log In first please");
       this.router.navigate(['/login']);
     }
@@ -82,6 +82,8 @@ export class EmployeesComponent implements OnInit, OnDestroy {
           }
     });
     dialogRef.afterClosed().subscribe(res => {
+
+      console.log(res);
 
       if (res !== undefined)
       {

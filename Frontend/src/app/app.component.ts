@@ -21,13 +21,14 @@ export class AppComponent {
 
   ngOnInit(): void {
     //refresh the value of token
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("accessToken");
   };
 
   logOut(): void {
 
     //on log out delete the token from localStorage
-    localStorage.setItem("token", "");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
 
     //reroute to Log In
     this.router.navigate(['/login']);
@@ -37,7 +38,7 @@ export class AppComponent {
   };
 
   refreshToken(): void {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("accessToken");
   }
 
 }

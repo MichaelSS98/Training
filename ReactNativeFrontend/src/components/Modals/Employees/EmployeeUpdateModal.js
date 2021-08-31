@@ -207,6 +207,7 @@ const EmployeeUpdateModal = ({popupUpdate, setPopupUpdate, employeeInfo}) => {
         <Modal 
             visible={popupUpdate}
             onRequestClose={handleClose}
+            animationType="slide"
         >
             <View>
                 <Formik

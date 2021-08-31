@@ -8,9 +8,9 @@ const jwt = require('jsonwebtoken');
 const startServer = async () => {
 
     const port = 5000;
-    const urlUsers = "http://localhost:5001";
-    const urlEmployees = "http://localhost:5002";
-    const urlProjects = "http://localhost:5003";
+    const urlUsers = "http://users:5001";
+    const urlEmployees = "http://employees:5002";
+    const urlProjects = "http://projects:5003";
 
 
     const app = express(); //creare server

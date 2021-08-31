@@ -10,7 +10,7 @@ const typeDefUser = gql `
         role: String!
     }
 
-    type Tokens {
+    type Tokens @key(fields: "accessToken"){
         accessToken: String!
         refreshToken: String!
     }

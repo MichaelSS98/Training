@@ -71,6 +71,7 @@ const EmployeeDeleteModal = ({popupDelete, setPopupDelete, employeeInfo}) => {
         <Modal 
             visible={popupDelete}
             onRequestClose={handleClose}
+            animationType="slide"
         >
             <View style={styles.container}>
                 <Text style={styles.header}>ARE YOU SURE YOU WISH TO DELETE THIS EMPLOYEE?</Text>

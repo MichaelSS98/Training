@@ -36,7 +36,7 @@ import { retrieveAccessToken, removeTokens } from './src/security';
 LogBox.ignoreLogs(['Reanimated 2']);
 
 const client = new ApolloClient({
-  uri: 'https://852fb46b572e.ngrok.io/graphql',
+  uri: 'http://localhost:5000/graphql',
   request: async (operation) => {
     const token = await retrieveAccessToken();
 

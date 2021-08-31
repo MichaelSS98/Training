@@ -131,6 +131,7 @@ const ProjectAddModal = ({popupOpen, setPopupOpen}) => {
         <Modal 
             visible={popupOpen}
             onRequestClose={handleClose}
+            animationType="slide"
         >
             <View>
                 <Formik

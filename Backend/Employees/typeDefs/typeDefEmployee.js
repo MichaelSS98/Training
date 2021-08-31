@@ -20,6 +20,10 @@ const typeDefEmployee = gql `
         project: Project
     }
 
+    extend type Project @key(fields: "id"){
+        id: ID! @external
+    }
+
     type Employee @key(fields: "id"){
         id: ID!
         name: String!

@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+    mongodb:
+        image: mongo
+        container_name: mongodb
+        volumes:
+            - database_volume:/data/db
+            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=root
+            - MONGO_INITDB_DATABASE=employees
+
+    gateway:
+        build: ../Gateway/.
+        container_name: gateway
+        ports:
+            - 5000:5000
+        depends_on:
+            - employees
+            - projects
+            - users
+        volumes:
+            - ../Gateway:/usr/src/app
+            - /usr/src/app/node_modules
+    
+    employees:
+        build: ../Employees/.
+        container_name: employees
+        depends_on:
+            - mongodb
+        volumes:
+            - ../Employees:/usr/src/app
+            - /usr/src/app/node_modules
+
+    projects:
+        build: ../Projects/.
+        container_name: projects
+        depends_on:
+            - mongodb
+        volumes:
+            - ../Projects:/usr/src/app
+            - /usr/src/app/node_modules
+
+    users:
+        build: ../Users/.
+        container_name: users
+        depends_on:
+            - mongodb
+        volumes:
+            - ../Users:/usr/src/app
+            - /usr/src/app/node_modules
+        
+volumes:
+    database_volume:
